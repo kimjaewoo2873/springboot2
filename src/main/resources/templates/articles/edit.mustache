@@ -1,0 +1,19 @@
+{{>layouts/header}}
+{{#article}}
+<form class="container" action="/articles/update" method="post">
+    <!-- id는 보일 필요 없는 몇번 article을 수정할지 구별을 위해 필요한거라, hidden 으로 설정함  -->
+    <input name="id" type="hidden" value="{{id}}">
+    <div class="mb-3">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title" value="{{title}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea class="form-control" rows="3" name="content">{{content}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- 모델에 article을 뷰에 등록했음 -->
+    <a href="/articles/{{id}}">Back</a>
+</form>
+{{/article}}
+{{>layouts/footer}}
