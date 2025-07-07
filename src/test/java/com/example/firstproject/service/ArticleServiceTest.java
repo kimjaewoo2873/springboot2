@@ -64,6 +64,7 @@ class ArticleServiceTest {
         // 3. 비교 및 검증
         assertEquals(expected.toString(), article.toString());
     }
+
     @Transactional
     @Test
     void create_실패_id가_포함된_dto_입력() {
@@ -77,5 +78,71 @@ class ArticleServiceTest {
         Article article = articleService.create(dto);
         // 3. 비교 및 검증
         assertEquals(expected, article); // 실제, 예상 데이터 값 null은 toString() 메서드를 호출할 수 없습니다.
+    }
+
+    @Transactional
+    @Test
+    void update_성공_존재하는_id의_title_content가_있는_dto_입력() {
+        // 1. 예상 데이터
+        Long id = 2L;
+        String title = "나나나나";
+        String content = "2222";
+        ArticleForm dto = new ArticleForm(id, title, content);
+        Article expected = new Article(id, title, content);
+        // 2. 실제 데이터
+        Article article = articleService.update(id, dto);
+        // 3. 비교 및 검증
+        assertEquals(expected.toString(), article.toString());
+    }
+
+    @Transactional
+    @Test
+    void update_성공_존재하는_id와_title만_있는_dto_입력() {
+        // 1. 예상 데이터
+        Long id = 1L;
+        String title = "AAAA";
+        String content = null;
+        ArticleForm dto = new ArticleForm(id, title, content);
+        Article expected = new Article(1L, "AAAA", "1111");
+        // 2. 실제 데이터
+        Article article = articleService.update(id, dto);
+        // 3. 비교 및 검증
+        assertEquals(expected.toString(), article.toString());
+    }
+
+    @Transactional
+    @Test
+    void update_실패_존재하지_않는_id의_dto_입력() {
+        Long id = 4L;
+        String title = "다다다다";
+        String content = "3333";
+        ArticleForm dto = new ArticleForm(id, title, content);
+        Article expected = null; // 존재하지 않는 id이므로 데이터 없음
+
+        Article article = articleService.update(id, dto);
+
+        assertEquals(expected, article);
+    }
+
+    @Transactional
+    @Test
+    void delete_성공_존재하는_id_입력() {
+        Long id = 2L;
+        Article expected = new Article(id, "나나나나", "2222");
+
+        Article article = articleService.delete(id);
+
+        assertEquals(expected.toString(), article.toString());
+    }
+
+    @Transactional
+    @Test
+    void delete_실패_존재하지_않는_id_입력() {
+        Long id = 12L;
+        Article expected = null;
+
+        Article article = articleService.delete(id);
+
+        assertEquals(expected, article);
     }
 }
