@@ -12,6 +12,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> { //JpaR
     @Query(value="SELECT * FROM comment WHERE article_id = :articleId", nativeQuery = true)
     List<Comment> findByArticleId(Long articleId);
 
+    // @Query(value="SELECT * FROM comment WHERE nickname = :nickname", nativeQuery = true)도 가능
     // 특정 닉네임의 모든 댓글 조회 , 네이티브 쿼리 XML 사용, 경로 : META-INF > orm.xml
     List<Comment> findByNickname(String nickname);
 }
