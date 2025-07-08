@@ -1,6 +1,7 @@
 package com.example.firstproject.dto;
 
 import com.example.firstproject.entity.Comment;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @AllArgsConstructor
