@@ -33,9 +33,16 @@ public class PizzaService {
 
     public PizzaDto update(Long id, PizzaDto dto) {
         // 수정할 피자 찾기
-        Pizza target = pizzaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("피자를 찾을 수 없음"));
+        Pizza target = pizzaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("수정할 피자를 찾을 수 없음"));
         target.patch(dto); // 새 데이터로 피자 수정하기
         Pizza updated = pizzaRepository.save(target); // 엔티티 리파지터리에 저장
         return PizzaDto.createPizzaDto(updated);
+    }
+
+    public PizzaDto delete(Long id) {
+        // 삭제할 피자 찾기
+        Pizza target = pizzaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("삭제할 피자를 찾을 수 없음"));
+        pizzaRepository.delete(target);
+        return PizzaDto.createPizzaDto(target);
     }
 }
