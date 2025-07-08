@@ -1,5 +1,6 @@
 package com.example.firstproject.entity;
 
+import com.example.firstproject.dto.CommentDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +24,13 @@ public class Comment {
 
     @Column
     private String body; // 댓글 본문
+
+    public static Comment create(Article article, CommentDto dto) { // article은 부모 게시물 객체 받아온거임
+        if(dto.getId() != null)
+            throw new IllegalArgumentException("댓글 생성 실패! 댓글의 id가 없어야 합니다."); // 댓글 id가 이미 있는 경우
+        if(dto.getArticleId() != article.getId())
+            throw new IllegalArgumentException("댓글 생성 실패! 게시글의 id가 잘못됐습니다.");
+        return new Comment(dto.getId(), article, dto.getNickname(), dto.getBody());
+    }
 }
 
