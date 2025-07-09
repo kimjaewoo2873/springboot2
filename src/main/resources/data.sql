@@ -22,3 +22,13 @@ INSERT INTO pizza(name, price) VALUES('불고기 피자', '29900');
 INSERT INTO pizza(name, price) VALUES('고구마 피자', '30900');
 INSERT INTO pizza(name, price) VALUES('포테이토 피자', '27900');
 INSERT INTO pizza(name, price) VALUES('치즈 피자', '23900');
+
+INSERT INTO group(groupName) VALUE('A');
+INSERT INTO group(groupName) VALUE('B');
+INSERT INTO group(groupName) VALUE('D');
+INSERT INTO group(groupName) VALUE('E');
+
+INSERT INTO team(group_id, country) VALUES(1, 'Portugal');
+INSERT INTO team(group_id, country) VALUES(1, 'Ghana');
+INSERT INTO team(group_id, country) VALUES(1, 'Uruguay');
+INSERT INTO team(group_id, country) VALUES(1, 'Korea Republic');
