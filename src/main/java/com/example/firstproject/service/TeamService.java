@@ -8,6 +8,7 @@ import com.example.firstproject.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +20,12 @@ public class TeamService {
 
     public List<TeamDto> getTeamsOnGroup(Long groupId) {
        List<Team> teamList = teamRepository.findByTeam(groupId);
-
+       List<TeamDto> dto = new ArrayList<TeamDto>();
+       for(int i=0;i<teamList.size();i++) {
+           Team team = teamList.get(i);
+           TeamDto teamDto = TeamDto.createDto(team);
+           dto.add(teamDto);
+       }
+       return dto;
     }
 }

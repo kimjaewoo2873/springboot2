@@ -24,4 +24,6 @@ public class Team {
     @Column
     private String country;
 
+    @Column
+    private String imageUrl;
 }

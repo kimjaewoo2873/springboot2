@@ -23,8 +23,8 @@ public class GroupController {
     public String show(@PathVariable Long groupId, Model model) {
         GroupDto groupDto = groupService.getGroup(groupId);
         List<TeamDto> teamDtos = teamService.getTeamsOnGroup(groupId);
-        model.addAttribute("groupname",groupDto);
-        model.addAttribute("teamsDto", teamDtos);
+        model.addAttribute("groupname",groupDto.getGroupName());
+        model.addAttribute("teamDtoList", teamDtos);
         return "groups/show";
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.service.annotation.GetExchange;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "user_group")  // 테이블명 변경
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
